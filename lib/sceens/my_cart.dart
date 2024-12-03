@@ -1,20 +1,68 @@
 import 'package:flutter/material.dart';
+import 'package:market_app/sceens/Product_Details.dart';
+import 'package:market_app/sceens/home_page.dart';
 
-class MyCart extends StatelessWidget {
+class MyCart extends StatefulWidget {
   const MyCart({super.key});
+
+  @override
+  State<MyCart> createState() => _MyCartState();
+}
+
+class _MyCartState extends State<MyCart> {
+  // Liste des éléments du panier avec leur quantité
+  final List<Map<String, dynamic>> cartItems = [
+    {
+      "name": "Fresh Banana",
+      "category": "Fruit",
+      "image": "asset/img/bananas_opt-removebg-preview.png",
+      "price": 4.00,
+      "quantity": 1,
+    },
+    {
+      "name": "Red Apples",
+      "category": "Fruit",
+      "image": "asset/img/pommes.png",
+      "price": 6.00,
+      "quantity": 1,
+    },
+    {
+      "name": "Avocado",
+      "category": "Fruit",
+      "image": "asset/img/KIWI.png",
+      "price": 9.00,
+      "quantity": 1,
+    },
+    {
+      "name": "Abricot",
+      "category": "Fruit & Vegetables",
+      "image": "asset/img/Abricot.png",
+      "price": 5.00,
+      "quantity": 1,
+    },
+  ];
+
+  // Méthode pour calculer le prix total
+  double calculateTotalPrice() {
+    double total = 0;
+    for (var item in cartItems) {
+      total += item["price"] * item["quantity"];
+    }
+    return total;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF3F5F7), // Couleur de fond
-      body: Padding(
-        padding: const EdgeInsets.only(top: 30, left: 16, right: 16),
-        child: Column(
-          children: [
-            Row(
+      backgroundColor: const Color(0xFFF3F5F7),
+      body: Column(
+        children: [
+          // En-tête de la page
+          Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 30),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Bouton retour
                 GestureDetector(
                   onTap: () {
                     Navigator.pop(context); // Retour à la page précédente
@@ -23,7 +71,7 @@ class MyCart extends StatelessWidget {
                     height: 40,
                     width: 40,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: const Color(0xFFF3F5F7),
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
@@ -45,691 +93,295 @@ class MyCart extends StatelessWidget {
                     fontFamily: 'Roboto',
                   ),
                 ),
-                // Icône panier
-                Stack(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        // Action du panier
-                      },
-                      child: Container(
-                        height: 40,
-                        width: 40,
+                GestureDetector(
+                  onTap: () {
+                    // Action supplémentaire pour le bouton à droite
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: const Icon(Icons.keyboard_control_rounded,
+                        color: Colors.white, size: 30),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // Liste des articles dans le panier
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.all(16.0),
+              itemCount: cartItems.length,
+              itemBuilder: (context, index) {
+                final item = cartItems[index];
+                return Container(
+                  margin: const EdgeInsets.only(bottom: 16),
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFF3F5F7),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Row(
+                    children: [
+                      // Image du produit
+                      Container(
+                        height: 60,
+                        width: 60,
                         decoration: BoxDecoration(
-                          color: Colors.green,
-                          shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 10,
-                              offset: const Offset(0, 4),
+                          borderRadius: BorderRadius.circular(8),
+                          color: const Color(0xFFFBFCFC),
+                        ),
+                        child: Image.asset(
+                          item["image"],
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      // Détails du produit
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              item["name"],
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Roboto',
+                              ),
+                            ),
+                            Text(
+                              item["category"],
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey,
+                                fontFamily: 'Roboto',
+                              ),
                             ),
                           ],
                         ),
-                        child: const Icon(Icons.keyboard_control_sharp,
-                            color: Colors.white),
+                      ),
+                      // Boutons pour gérer la quantité + prix total
+                      Column(
+                        children: [
+                          Row(
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    if (item["quantity"] > 1) {
+                                      item["quantity"]--;
+                                    }
+                                  });
+                                },
+                                icon: Container(
+                                    height: 20,
+                                    width: 20,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.white,
+                                    ),
+                                    child: const Icon(Icons.remove, size: 20)),
+                              ),
+                              Text(
+                                "${item["quantity"]}",
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Roboto',
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    item["quantity"]++;
+                                  });
+                                },
+                                icon: Container(
+                                  height: 20,
+                                  width: 20,
+                                  decoration: const BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.white,
+                                  ),
+                                  child: const Icon(Icons.add, size: 20),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            "\$${(item["price"] * item["quantity"]).toStringAsFixed(2)}",
+                            style: const TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+          // Section Total
+          Container(
+            color: const Color(0xFFF3F5F7),
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "Subtotal",
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Roboto',
+                        color: Colors.grey,
+                      ),
+                    ),
+                    Text(
+                      "\$${calculateTotalPrice().toStringAsFixed(2)}",
+                      style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontFamily: 'Roboto',
                       ),
                     ),
                   ],
                 ),
+                const SizedBox(height: 16),
+                const Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Delivery Free",
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Roboto',
+                        color: Colors.grey,
+                      ),
+                    ),
+                    SizedBox(width: 165),
+                    Text(
+                      "Free",
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Roboto',
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                const Row(
+                  children: [
+                    Text(
+                      "Discount",
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Roboto',
+                        color: Colors.grey,
+                      ),
+                    ),
+                    SizedBox(width: 205),
+                    Text(
+                      "\$4.00",
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Roboto',
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ProductDetails()),
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                        height: 50,
+                        width: 350,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF3F5F7),
+                          borderRadius: BorderRadius.circular(30),
+                          shape: BoxShape.rectangle,
+                          border: Border.all(
+                            color: const Color(0xFF4CAF50),
+                            width: 0.7,
+                          ),
+                        ),
+                        child: const Center(
+                            child: Text(
+                          'Promo Code',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                          ),
+                        ))),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const HomePage()),
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                        height: 50,
+                        width: 350,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF4CAF50),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: const Center(
+                            child: Text(
+                          'Checkout for \$20.00',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ))),
+                  ),
+                )
               ],
             ),
-            const SizedBox(height: 20), // Espacement après l'en-tête
-            // Élément du panier
-            const CartItem(
-                // Widget avec gestion d egtat
-
-                ), // Widget avec gestion d'état
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
-}
-
-// Widget avec gestion d'état
-class CartItem extends StatefulWidget {
-  const CartItem({super.key});
-
-  @override
-  _CartItemState createState() => _CartItemState();
-}
-
-class _CartItemState extends State<CartItem> {
-  int _quantity = 1;
-  final double _pricePerItem = 2.00;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 120,
-          width: double.infinity, // Utilise toute la largeur disponible
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(
-            children: [
-              // Image
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 2,
-                    ),
-                  ),
-                  child: const Image(
-                    image: AssetImage(
-                        "asset/img/bananas_opt-removebg-preview.png"),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              // Texte du produit
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Fresh Banana",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                  Text(
-                    "Fruit",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                  Text(
-                    "250G",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                    ),
-                  ),
-                ],
-              ),
-              const Spacer(),
-              // Gestion des quantités et prix
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          if (_quantity > 1) {
-                            setState(() {
-                              _quantity--;
-                            });
-                          }
-                        },
-                        icon: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 10,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          child: const Icon(
-                            Icons.remove,
-                            color: Colors.black,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        "$_quantity",
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _quantity++;
-                          });
-                        },
-                        icon: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 10,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          child: const Icon(
-                            Icons.add,
-                            color: Colors.black,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  // Prix total
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text(
-                      "\$${(_pricePerItem * _quantity).toStringAsFixed(2)}",
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(width: 10),
-            ],
-          ),
-        ),
-        Container(
-          height: 120,
-          width: double.infinity, // Utilise toute la largeur disponible
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(
-            children: [
-              // Image
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 2,
-                    ),
-                  ),
-                  child: const Image(
-                    image: AssetImage(
-                        "asset/img/bananas_opt-removebg-preview.png"),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              // Texte du produit
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Fresh Banana",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                  Text(
-                    "Fruit",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                  Text(
-                    "250G",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                    ),
-                  ),
-                ],
-              ),
-              const Spacer(),
-              // Gestion des quantités et prix
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          if (_quantity > 1) {
-                            setState(() {
-                              _quantity--;
-                            });
-                          }
-                        },
-                        icon: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 10,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          child: const Icon(
-                            Icons.remove,
-                            color: Colors.black,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        "$_quantity",
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _quantity++;
-                          });
-                        },
-                        icon: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 10,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          child: const Icon(
-                            Icons.add,
-                            color: Colors.black,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  // Prix total
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text(
-                      "\$${(_pricePerItem * _quantity).toStringAsFixed(2)}",
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(width: 10),
-            ],
-          ),
-        ),
-        Container(
-          height: 120,
-          width: double.infinity, // Utilise toute la largeur disponible
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(
-            children: [
-              // Image
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 2,
-                    ),
-                  ),
-                  child: const Image(
-                    image: AssetImage(
-                        "asset/img/bananas_opt-removebg-preview.png"),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              // Texte du produit
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Fresh Banana",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                  Text(
-                    "Fruit",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                  Text(
-                    "250G",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                    ),
-                  ),
-                ],
-              ),
-              const Spacer(),
-              // Gestion des quantités et prix
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          if (_quantity > 1) {
-                            setState(() {
-                              _quantity--;
-                            });
-                          }
-                        },
-                        icon: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 10,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          child: const Icon(
-                            Icons.remove,
-                            color: Colors.black,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        "$_quantity",
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _quantity++;
-                          });
-                        },
-                        icon: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 10,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          child: const Icon(
-                            Icons.add,
-                            color: Colors.black,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  // Prix total
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text(
-                      "\$${(_pricePerItem * _quantity).toStringAsFixed(2)}",
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(width: 10),
-            ],
-          ),
-        ),
-        Container(
-          height: 120,
-          width: double.infinity, // Utilise toute la largeur disponible
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(
-            children: [
-              // Image
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 2,
-                    ),
-                  ),
-                  child: const Image(
-                    image: AssetImage(
-                        "asset/img/bananas_opt-removebg-preview.png"),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              // Texte du produit
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Fresh Banana",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                  Text(
-                    "Fruit",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                  Text(
-                    "250G",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                    ),
-                  ),
-                ],
-              ),
-              const Spacer(),
-              // Gestion des quantités et prix
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          if (_quantity > 1) {
-                            setState(() {
-                              _quantity--;
-                            });
-                          }
-                        },
-                        icon: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 10,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          child: const Icon(
-                            Icons.remove,
-                            color: Colors.black,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        "$_quantity",
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _quantity++;
-                          });
-                        },
-                        icon: Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 10,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          child: const Icon(
-                            Icons.add,
-                            color: Colors.black,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 35,
-                        width: 60,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.red,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 10,
-                              offset: const Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        child: const Icon(
-                          Icons.delete,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                      )
-                    ],
-                  ),
-                  // Prix total
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text(
-                      "\$${(_pricePerItem * _quantity).toStringAsFixed(2)}",
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              const SizedBox(width: 10),
-            ],
-          ),
-        ),
-        const SizedBox(height: 30),
-        const Column(
-          children: [
-            Row(
-              children: [
-                Text('Subtotal',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    )),
-                Spacer(),
-                Text('\$24.00',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    )),
-              ],
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-}
-
-void main() {
-  runApp(const MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: MyCart(),
-  ));
 }

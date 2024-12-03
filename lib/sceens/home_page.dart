@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:market_app/sceens/Product_Details.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -496,128 +497,11 @@ class HomePage extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 266,
-                                  width: 170,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: const Color(0xFFFFFFFF),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        height: 130,
-                                        width: 130,
-                                        margin: const EdgeInsets.only(top: 16),
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: DecorationImage(
-                                            image: AssetImage(
-                                                'asset/img/fraise.png'),
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 6),
-                                      const Text(
-                                        'fraise',
-                                        style: TextStyle(
-                                          color: Color(0xFF000000),
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: "Roboto",
-                                        ),
-                                      ),
-                                      const Text(
-                                        '250g',
-                                        style: TextStyle(
-                                          color: Color(0xDA9E9999),
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: "Roboto",
-                                        ),
-                                      ),
-                                      const SizedBox(height: 10),
-                                      // Prix et icônes
-                                      const Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 8.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    SizedBox(width: 4),
-                                                    Text(
-                                                      "\$6 USD",
-                                                      style: TextStyle(
-                                                        color:
-                                                            Color(0xFF000000),
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontFamily: "Roboto",
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Icon(Icons.star,
-                                                        color:
-                                                            Color(0xDA9E9999),
-                                                        size: 15),
-                                                    Icon(Icons.star,
-                                                        color:
-                                                            Color(0xDA9E9999),
-                                                        size: 15),
-                                                    Icon(Icons.star,
-                                                        color:
-                                                            Color(0xDA9E9999),
-                                                        size: 15),
-                                                    Icon(Icons.star,
-                                                        color:
-                                                            Color(0xDA9E9999),
-                                                        size: 15),
-                                                    Icon(Icons.star,
-                                                        color:
-                                                            Color(0x81858282),
-                                                        size: 15),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                            Icon(
-                                              Icons.add_circle_outlined,
-                                              color: Colors.black,
-                                              size: 35,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(width: 16),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const ProductDetails()),
-                                    );
-                                  },
-                                  child: Container(
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                children: [
+                                  Container(
                                     height: 266,
                                     width: 170,
                                     decoration: BoxDecoration(
@@ -637,14 +521,14 @@ class HomePage extends StatelessWidget {
                                             shape: BoxShape.circle,
                                             image: DecorationImage(
                                               image: AssetImage(
-                                                  'asset/img/dragon.jpg'),
+                                                  'asset/img/fraise.png'),
                                               fit: BoxFit.cover,
                                             ),
                                           ),
                                         ),
                                         const SizedBox(height: 6),
                                         const Text(
-                                          'Fruit of Dragon',
+                                          'fraise',
                                           style: TextStyle(
                                             color: Color(0xFF000000),
                                             fontSize: 20,
@@ -666,69 +550,195 @@ class HomePage extends StatelessWidget {
                                         const Padding(
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 8.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Row(
-                                                    children: [
-                                                      SizedBox(width: 4),
-                                                      Text(
-                                                        "\$6 USD",
-                                                        style: TextStyle(
-                                                          color:
-                                                              Color(0xFF000000),
-                                                          fontSize: 15,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontFamily: "Roboto",
+                                          child: SingleChildScrollView(
+                                            scrollDirection: Axis.horizontal,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Row(
+                                                      children: [
+                                                        SizedBox(width: 4),
+                                                        Text(
+                                                          "\$6 USD",
+                                                          style: TextStyle(
+                                                            color: Color(
+                                                                0xFF000000),
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontFamily:
+                                                                "Roboto",
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      Icon(Icons.star,
-                                                          color:
-                                                              Color(0xDA9E9999),
-                                                          size: 15),
-                                                      Icon(Icons.star,
-                                                          color:
-                                                              Color(0xDA9E9999),
-                                                          size: 15),
-                                                      Icon(Icons.star,
-                                                          color:
-                                                              Color(0xDA9E9999),
-                                                          size: 15),
-                                                      Icon(Icons.star,
-                                                          color:
-                                                              Color(0xDA9E9999),
-                                                          size: 15),
-                                                      Icon(Icons.star,
-                                                          color:
-                                                              Color(0x81858282),
-                                                          size: 15),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                              Icon(
-                                                Icons.add_circle_outlined,
-                                                color: Colors.black,
-                                                size: 35,
-                                              ),
-                                            ],
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Icon(Icons.star,
+                                                            color: Color(
+                                                                0xDA9E9999),
+                                                            size: 15),
+                                                        Icon(Icons.star,
+                                                            color: Color(
+                                                                0xDA9E9999),
+                                                            size: 15),
+                                                        Icon(Icons.star,
+                                                            color: Color(
+                                                                0xDA9E9999),
+                                                            size: 15),
+                                                        Icon(Icons.star,
+                                                            color: Color(
+                                                                0xDA9E9999),
+                                                            size: 15),
+                                                        Icon(Icons.star,
+                                                            color: Color(
+                                                                0x81858282),
+                                                            size: 15),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                                Icon(
+                                                  Icons.add_circle_outlined,
+                                                  color: Colors.black,
+                                                  size: 35,
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ],
                                     ),
                                   ),
-                                ),
-                              ],
+                                  const SizedBox(width: 16),
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: Container(
+                                      height: 266,
+                                      width: 170,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                        color: const Color(0xFFFFFFFF),
+                                      ),
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.horizontal,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              height: 130,
+                                              width: 130,
+                                              margin: const EdgeInsets.only(
+                                                  top: 16),
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                image: DecorationImage(
+                                                  image: AssetImage(
+                                                      'asset/img/dragon.jpg'),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(height: 6),
+                                            const Text(
+                                              'Fruit of Dragon',
+                                              style: TextStyle(
+                                                color: Color(0xFF000000),
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: "Roboto",
+                                              ),
+                                            ),
+                                            const Text(
+                                              '250g',
+                                              style: TextStyle(
+                                                color: Color(0xDA9E9999),
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: "Roboto",
+                                              ),
+                                            ),
+                                            const SizedBox(height: 10),
+                                            // Prix et icônes
+                                            const Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 8.0),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          SizedBox(width: 4),
+                                                          Text(
+                                                            "\$6 USD",
+                                                            style: TextStyle(
+                                                              color: Color(
+                                                                  0xFF000000),
+                                                              fontSize: 15,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontFamily:
+                                                                  "Roboto",
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Icon(Icons.star,
+                                                              color: Color(
+                                                                  0xDA9E9999),
+                                                              size: 15),
+                                                          Icon(Icons.star,
+                                                              color: Color(
+                                                                  0xDA9E9999),
+                                                              size: 15),
+                                                          Icon(Icons.star,
+                                                              color: Color(
+                                                                  0xDA9E9999),
+                                                              size: 15),
+                                                          Icon(Icons.star,
+                                                              color: Color(
+                                                                  0xDA9E9999),
+                                                              size: 15),
+                                                          Icon(Icons.star,
+                                                              color: Color(
+                                                                  0x81858282),
+                                                              size: 15),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Icon(
+                                                    Icons.add_circle_outlined,
+                                                    color: Colors.black,
+                                                    size: 35,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           Column(
@@ -946,111 +956,56 @@ class HomePage extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        height:
-                                            100, // Augmenté pour inclure le texte
-                                        width: 115,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color: const Color(0xFFdcdcdc),
-                                            width: 1,
+                                  SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          height:
+                                              100, // Augmenté pour inclure le texte
+                                          width: 115,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                              color: const Color(0xFFdcdcdc),
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: const Color(0xFFFFFFFF),
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          color: const Color(0xFFFFFFFF),
-                                        ),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment
-                                              .spaceBetween, // Pour espacer image et texte
-                                          children: [
-                                            // Image en haut à gauche
-                                            Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(
-                                                    8.0), // Ajoute un espace autour de l'image
-                                                child: Container(
-                                                  height: 40,
-                                                  width: 40,
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    image: DecorationImage(
-                                                      image: AssetImage(
-                                                          'asset/img/dragon.jpg'),
-                                                      fit: BoxFit.cover,
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment
+                                                .spaceBetween, // Pour espacer image et texte
+                                            children: [
+                                              // Image en haut à gauche
+                                              Align(
+                                                alignment: Alignment.topLeft,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      8.0), // Ajoute un espace autour de l'image
+                                                  child: Container(
+                                                    height: 40,
+                                                    width: 40,
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      image: DecorationImage(
+                                                        image: AssetImage(
+                                                            'asset/img/dragon.jpg'),
+                                                        fit: BoxFit.cover,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                            // Texte centré en bas
-                                            const Padding(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              child: Text(
-                                                'dragon',
-                                                style: TextStyle(
-                                                  color: Color(0xFF000000),
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily: "Roboto",
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Container(
-                                        height:
-                                            100, // Augmenté pour inclure le texte
-                                        width: 115,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color: const Color(0xFFdcdcdc),
-                                            width: 1,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          color: const Color(0xFFFFFFFF),
-                                        ),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment
-                                              .spaceBetween, // Pour espacer image et texte
-                                          children: [
-                                            // Image en haut à gauche
-                                            Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(
-                                                    8.0), // Ajoute un espace autour de l'image
-                                                child: Container(
-                                                  height: 40,
-                                                  width: 40,
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    image: DecorationImage(
-                                                      image: AssetImage(
-                                                          'asset/img/mangue thai.jpeg'),
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            // Texte centré en bas
-                                            const Padding(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              child: Center(
+                                              // Texte centré en bas
+                                              const Padding(
+                                                padding: EdgeInsets.only(
+                                                    bottom: 8.0),
                                                 child: Text(
-                                                  'mangue Thai',
+                                                  'dragon',
                                                   style: TextStyle(
                                                     color: Color(0xFF000000),
                                                     fontSize: 15,
@@ -1059,67 +1014,126 @@ class HomePage extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Container(
-                                        height:
-                                            100, // Augmenté pour inclure le texte
-                                        width: 115,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color: const Color(0xFFdcdcdc),
-                                            width: 1,
+                                            ],
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          color: const Color(0xFFFFFFFF),
                                         ),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment
-                                              .spaceBetween, // Pour espacer image et texte
-                                          children: [
-                                            // Image en haut à gauche
-                                            Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(
-                                                    8.0), // Ajoute un espace autour de l'image
-                                                child: Container(
-                                                  height: 40,
-                                                  width: 40,
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    image: DecorationImage(
-                                                      image: AssetImage(
-                                                          'asset/img/goyave.png'),
-                                                      fit: BoxFit.cover,
+                                        const SizedBox(width: 10),
+                                        Container(
+                                          height:
+                                              100, // Augmenté pour inclure le texte
+                                          width: 115,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                              color: const Color(0xFFdcdcdc),
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: const Color(0xFFFFFFFF),
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment
+                                                .spaceBetween, // Pour espacer image et texte
+                                            children: [
+                                              // Image en haut à gauche
+                                              Align(
+                                                alignment: Alignment.topLeft,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      8.0), // Ajoute un espace autour de l'image
+                                                  child: Container(
+                                                    height: 40,
+                                                    width: 40,
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      image: DecorationImage(
+                                                        image: AssetImage(
+                                                            'asset/img/mangue thai.jpeg'),
+                                                        fit: BoxFit.cover,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                            // Texte centré en bas
-                                            const Padding(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              child: Text(
-                                                'goyave',
-                                                style: TextStyle(
-                                                  color: Color(0xFF000000),
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily: "Roboto",
+                                              // Texte centré en bas
+                                              const Padding(
+                                                padding: EdgeInsets.only(
+                                                    bottom: 8.0),
+                                                child: Center(
+                                                  child: Text(
+                                                    'mangue Thai',
+                                                    style: TextStyle(
+                                                      color: Color(0xFF000000),
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontFamily: "Roboto",
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                        const SizedBox(width: 10),
+                                        Container(
+                                          height:
+                                              100, // Augmenté pour inclure le texte
+                                          width: 115,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                              color: const Color(0xFFdcdcdc),
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: const Color(0xFFFFFFFF),
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment
+                                                .spaceBetween, // Pour espacer image et texte
+                                            children: [
+                                              // Image en haut à gauche
+                                              Align(
+                                                alignment: Alignment.topLeft,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      8.0), // Ajoute un espace autour de l'image
+                                                  child: Container(
+                                                    height: 40,
+                                                    width: 40,
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      image: DecorationImage(
+                                                        image: AssetImage(
+                                                            'asset/img/goyave.png'),
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              // Texte centré en bas
+                                              const Padding(
+                                                padding: EdgeInsets.only(
+                                                    bottom: 8.0),
+                                                child: Text(
+                                                  'goyave',
+                                                  style: TextStyle(
+                                                    color: Color(0xFF000000),
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontFamily: "Roboto",
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               )
@@ -1711,239 +1725,257 @@ class HomePage extends StatelessWidget {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 266,
-                                  width: 170,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: const Color(0xFFFFFFFF),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Column(
+                                children: [
+                                  Row(
                                     children: [
                                       Container(
-                                        height: 130,
-                                        width: 130,
-                                        margin: const EdgeInsets.only(top: 16),
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: DecorationImage(
-                                            image: AssetImage(
-                                                'asset/img/KIWI.png'),
-                                            fit: BoxFit.cover,
-                                          ),
+                                        height: 266,
+                                        width: 170,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          color: const Color(0xFFFFFFFF),
                                         ),
-                                      ),
-                                      const SizedBox(height: 6),
-                                      const Text(
-                                        'Avocado',
-                                        style: TextStyle(
-                                          color: Color(0xFF000000),
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: "Roboto",
-                                        ),
-                                      ),
-                                      const Text(
-                                        '250g',
-                                        style: TextStyle(
-                                          color: Color(0xDA9E9999),
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: "Roboto",
-                                        ),
-                                      ),
-                                      const SizedBox(height: 10),
-                                      // Prix et icônes
-                                      const Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 8.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
                                           children: [
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    SizedBox(width: 4),
-                                                    Text(
-                                                      "\$6 USD",
-                                                      style: TextStyle(
-                                                        color:
-                                                            Color(0xFF000000),
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontFamily: "Roboto",
-                                                      ),
-                                                    ),
-                                                  ],
+                                            Container(
+                                              height: 130,
+                                              width: 130,
+                                              margin: const EdgeInsets.only(
+                                                  top: 16),
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                image: DecorationImage(
+                                                  image: AssetImage(
+                                                      'asset/img/KIWI.png'),
+                                                  fit: BoxFit.cover,
                                                 ),
-                                                Row(
-                                                  children: [
-                                                    Icon(Icons.star,
-                                                        color:
-                                                            Color(0xDA9E9999),
-                                                        size: 15),
-                                                    Icon(Icons.star,
-                                                        color:
-                                                            Color(0xDA9E9999),
-                                                        size: 15),
-                                                    Icon(Icons.star,
-                                                        color:
-                                                            Color(0xDA9E9999),
-                                                        size: 15),
-                                                    Icon(Icons.star,
-                                                        color:
-                                                            Color(0xDA9E9999),
-                                                        size: 15),
-                                                    Icon(Icons.star,
-                                                        color:
-                                                            Color(0x81858282),
-                                                        size: 15),
-                                                  ],
-                                                ),
-                                              ],
+                                              ),
                                             ),
-                                            Icon(
-                                              Icons.add_circle_outlined,
-                                              color: Colors.black,
-                                              size: 35,
+                                            const SizedBox(height: 6),
+                                            const Text(
+                                              'KIWI',
+                                              style: TextStyle(
+                                                color: Color(0xFF000000),
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: "Roboto",
+                                              ),
+                                            ),
+                                            const Text(
+                                              '250g',
+                                              style: TextStyle(
+                                                color: Color(0xDA9E9999),
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: "Roboto",
+                                              ),
+                                            ),
+                                            const SizedBox(height: 10),
+                                            // Prix et icônes
+                                            const Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 8.0),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          SizedBox(width: 4),
+                                                          Text(
+                                                            "\$6 USD",
+                                                            style: TextStyle(
+                                                              color: Color(
+                                                                  0xFF000000),
+                                                              fontSize: 15,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontFamily:
+                                                                  "Roboto",
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Icon(Icons.star,
+                                                              color: Color(
+                                                                  0xDA9E9999),
+                                                              size: 15),
+                                                          Icon(Icons.star,
+                                                              color: Color(
+                                                                  0xDA9E9999),
+                                                              size: 15),
+                                                          Icon(Icons.star,
+                                                              color: Color(
+                                                                  0xDA9E9999),
+                                                              size: 15),
+                                                          Icon(Icons.star,
+                                                              color: Color(
+                                                                  0xDA9E9999),
+                                                              size: 15),
+                                                          Icon(Icons.star,
+                                                              color: Color(
+                                                                  0x81858282),
+                                                              size: 15),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Icon(
+                                                    Icons.add_circle_outlined,
+                                                    color: Colors.black,
+                                                    size: 35,
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ],
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(width: 16),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const ProductDetails()),
-                                    );
-                                  },
-                                  child: Container(
-                                    height: 266,
-                                    width: 170,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30),
-                                      color: const Color(0xFFFFFFFF),
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          height: 130,
-                                          width: 130,
-                                          margin:
-                                              const EdgeInsets.only(top: 16),
-                                          decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            image: DecorationImage(
-                                              image: AssetImage(
-                                                  'asset/img/bananas_opt.jpg'),
-                                              fit: BoxFit.cover,
-                                            ),
+                                      const SizedBox(width: 16),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const ProductDetails()),
+                                          );
+                                        },
+                                        child: Container(
+                                          height: 266,
+                                          width: 170,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            color: const Color(0xFFFFFFFF),
                                           ),
-                                        ),
-                                        const SizedBox(height: 6),
-                                        const Text(
-                                          'Fresh Bananas',
-                                          style: TextStyle(
-                                            color: Color(0xFF000000),
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: "Roboto",
-                                          ),
-                                        ),
-                                        const Text(
-                                          '250g',
-                                          style: TextStyle(
-                                            color: Color(0xDA9E9999),
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: "Roboto",
-                                          ),
-                                        ),
-                                        const SizedBox(height: 10),
-                                        // Prix et icônes
-                                        const Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 8.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
                                             children: [
-                                              Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Row(
-                                                    children: [
-                                                      SizedBox(width: 4),
-                                                      Text(
-                                                        "\$6 USD",
-                                                        style: TextStyle(
-                                                          color:
-                                                              Color(0xFF000000),
-                                                          fontSize: 15,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontFamily: "Roboto",
-                                                        ),
-                                                      ),
-                                                    ],
+                                              Container(
+                                                height: 130,
+                                                width: 130,
+                                                margin: const EdgeInsets.only(
+                                                    top: 16),
+                                                decoration: const BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  image: DecorationImage(
+                                                    image: AssetImage(
+                                                        'asset/img/bananas_opt.jpg'),
+                                                    fit: BoxFit.cover,
                                                   ),
-                                                  Row(
-                                                    children: [
-                                                      Icon(Icons.star,
-                                                          color:
-                                                              Color(0xDA9E9999),
-                                                          size: 15),
-                                                      Icon(Icons.star,
-                                                          color:
-                                                              Color(0xDA9E9999),
-                                                          size: 15),
-                                                      Icon(Icons.star,
-                                                          color:
-                                                              Color(0xDA9E9999),
-                                                          size: 15),
-                                                      Icon(Icons.star,
-                                                          color:
-                                                              Color(0xDA9E9999),
-                                                          size: 15),
-                                                      Icon(Icons.star,
-                                                          color:
-                                                              Color(0x81858282),
-                                                          size: 15),
-                                                    ],
-                                                  ),
-                                                ],
+                                                ),
                                               ),
-                                              Icon(
-                                                Icons.add_circle_outlined,
-                                                color: Colors.black,
-                                                size: 35,
+                                              const SizedBox(height: 6),
+                                              const Text(
+                                                'Fresh Bananas',
+                                                style: TextStyle(
+                                                  color: Color(0xFF000000),
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: "Roboto",
+                                                ),
+                                              ),
+                                              const Text(
+                                                '250g',
+                                                style: TextStyle(
+                                                  color: Color(0xDA9E9999),
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: "Roboto",
+                                                ),
+                                              ),
+                                              const SizedBox(height: 10),
+                                              // Prix et icônes
+                                              const Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 8.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Row(
+                                                          children: [
+                                                            SizedBox(width: 4),
+                                                            Text(
+                                                              "\$6 USD",
+                                                              style: TextStyle(
+                                                                color: Color(
+                                                                    0xFF000000),
+                                                                fontSize: 15,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontFamily:
+                                                                    "Roboto",
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Icon(Icons.star,
+                                                                color: Color(
+                                                                    0xDA9E9999),
+                                                                size: 15),
+                                                            Icon(Icons.star,
+                                                                color: Color(
+                                                                    0xDA9E9999),
+                                                                size: 15),
+                                                            Icon(Icons.star,
+                                                                color: Color(
+                                                                    0xDA9E9999),
+                                                                size: 15),
+                                                            Icon(Icons.star,
+                                                                color: Color(
+                                                                    0xDA9E9999),
+                                                                size: 15),
+                                                            Icon(Icons.star,
+                                                                color: Color(
+                                                                    0x81858282),
+                                                                size: 15),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Icon(
+                                                      Icons.add_circle_outlined,
+                                                      color: Colors.black,
+                                                      size: 35,
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                           Column(
@@ -2160,111 +2192,56 @@ class HomePage extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        height:
-                                            100, // Augmenté pour inclure le texte
-                                        width: 115,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color: const Color(0xFFdcdcdc),
-                                            width: 1,
+                                  SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          height:
+                                              100, // Augmenté pour inclure le texte
+                                          width: 115,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                              color: const Color(0xFFdcdcdc),
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: const Color(0xFFFFFFFF),
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          color: const Color(0xFFFFFFFF),
-                                        ),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment
-                                              .spaceBetween, // Pour espacer image et texte
-                                          children: [
-                                            // Image en haut à gauche
-                                            Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(
-                                                    8.0), // Ajoute un espace autour de l'image
-                                                child: Container(
-                                                  height: 40,
-                                                  width: 40,
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    image: DecorationImage(
-                                                      image: AssetImage(
-                                                          'asset/img/dragon.jpg'),
-                                                      fit: BoxFit.cover,
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment
+                                                .spaceBetween, // Pour espacer image et texte
+                                            children: [
+                                              // Image en haut à gauche
+                                              Align(
+                                                alignment: Alignment.topLeft,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      8.0), // Ajoute un espace autour de l'image
+                                                  child: Container(
+                                                    height: 40,
+                                                    width: 40,
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      image: DecorationImage(
+                                                        image: AssetImage(
+                                                            'asset/img/dragon.jpg'),
+                                                        fit: BoxFit.cover,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                            // Texte centré en bas
-                                            const Padding(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              child: Text(
-                                                'dragon',
-                                                style: TextStyle(
-                                                  color: Color(0xFF000000),
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily: "Roboto",
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Container(
-                                        height:
-                                            100, // Augmenté pour inclure le texte
-                                        width: 115,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color: const Color(0xFFdcdcdc),
-                                            width: 1,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          color: const Color(0xFFFFFFFF),
-                                        ),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment
-                                              .spaceBetween, // Pour espacer image et texte
-                                          children: [
-                                            // Image en haut à gauche
-                                            Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(
-                                                    8.0), // Ajoute un espace autour de l'image
-                                                child: Container(
-                                                  height: 40,
-                                                  width: 40,
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    image: DecorationImage(
-                                                      image: AssetImage(
-                                                          'asset/img/mangue thai.jpeg'),
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            // Texte centré en bas
-                                            const Padding(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              child: Center(
+                                              // Texte centré en bas
+                                              const Padding(
+                                                padding: EdgeInsets.only(
+                                                    bottom: 8.0),
                                                 child: Text(
-                                                  'mangue Thai',
+                                                  'dragon',
                                                   style: TextStyle(
                                                     color: Color(0xFF000000),
                                                     fontSize: 15,
@@ -2273,67 +2250,126 @@ class HomePage extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Container(
-                                        height:
-                                            100, // Augmenté pour inclure le texte
-                                        width: 115,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color: const Color(0xFFdcdcdc),
-                                            width: 1,
+                                            ],
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          color: const Color(0xFFFFFFFF),
                                         ),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment
-                                              .spaceBetween, // Pour espacer image et texte
-                                          children: [
-                                            // Image en haut à gauche
-                                            Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(
-                                                    8.0), // Ajoute un espace autour de l'image
-                                                child: Container(
-                                                  height: 40,
-                                                  width: 40,
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    image: DecorationImage(
-                                                      image: AssetImage(
-                                                          'asset/img/goyave.png'),
-                                                      fit: BoxFit.cover,
+                                        const SizedBox(width: 10),
+                                        Container(
+                                          height:
+                                              100, // Augmenté pour inclure le texte
+                                          width: 115,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                              color: const Color(0xFFdcdcdc),
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: const Color(0xFFFFFFFF),
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment
+                                                .spaceBetween, // Pour espacer image et texte
+                                            children: [
+                                              // Image en haut à gauche
+                                              Align(
+                                                alignment: Alignment.topLeft,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      8.0), // Ajoute un espace autour de l'image
+                                                  child: Container(
+                                                    height: 40,
+                                                    width: 40,
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      image: DecorationImage(
+                                                        image: AssetImage(
+                                                            'asset/img/mangue thai.jpeg'),
+                                                        fit: BoxFit.cover,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                            // Texte centré en bas
-                                            const Padding(
-                                              padding:
-                                                  EdgeInsets.only(bottom: 8.0),
-                                              child: Text(
-                                                'goyave',
-                                                style: TextStyle(
-                                                  color: Color(0xFF000000),
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily: "Roboto",
+                                              // Texte centré en bas
+                                              const Padding(
+                                                padding: EdgeInsets.only(
+                                                    bottom: 8.0),
+                                                child: Center(
+                                                  child: Text(
+                                                    'mangue Thai',
+                                                    style: TextStyle(
+                                                      color: Color(0xFF000000),
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontFamily: "Roboto",
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                        const SizedBox(width: 10),
+                                        Container(
+                                          height:
+                                              100, // Augmenté pour inclure le texte
+                                          width: 115,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                              color: const Color(0xFFdcdcdc),
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: const Color(0xFFFFFFFF),
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment
+                                                .spaceBetween, // Pour espacer image et texte
+                                            children: [
+                                              // Image en haut à gauche
+                                              Align(
+                                                alignment: Alignment.topLeft,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      8.0), // Ajoute un espace autour de l'image
+                                                  child: Container(
+                                                    height: 40,
+                                                    width: 40,
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      image: DecorationImage(
+                                                        image: AssetImage(
+                                                            'asset/img/goyave.png'),
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              // Texte centré en bas
+                                              const Padding(
+                                                padding: EdgeInsets.only(
+                                                    bottom: 8.0),
+                                                child: Text(
+                                                  'goyave',
+                                                  style: TextStyle(
+                                                    color: Color(0xFF000000),
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontFamily: "Roboto",
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               )
@@ -2347,6 +2383,33 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
+            ],
+          ),
+        ),
+        bottomNavigationBar: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          decoration: BoxDecoration(
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black,
+                blurRadius: 30,
+                offset: Offset(0, 20),
+              ),
+            ],
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: CurvedNavigationBar(
+            color: const Color(0XFFFFFFFF),
+            backgroundColor: const Color(0XFFFFFFFF),
+            buttonBackgroundColor: const Color(0XFFFFFFFF),
+            height: 60,
+            animationCurve: Curves.easeInOut,
+            animationDuration: const Duration(milliseconds: 600),
+            items: const [
+              Icon(Icons.home, size: 30),
+              Icon(Icons.bookmark, size: 30),
+              Icon(Icons.notifications, size: 30),
+              Icon(Icons.person, size: 30),
             ],
           ),
         ),

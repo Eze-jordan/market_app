@@ -22,122 +22,125 @@ class _ProductDetailsState extends State<ProductDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF3F5F7), // Couleur de fond
-      body: Padding(
-        padding: const EdgeInsets.only(top: 30),
-        child: Column(
-          children: [
-            // Boutons retour et panier
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: Column(
+            children: [
+              // Boutons retour et panier
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Bouton retour
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context); // Retour à la page précédente
+                      },
+                      child: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              blurRadius: 10,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child:
+                            const Icon(Icons.arrow_back, color: Colors.black),
+                      ),
+                    ),
+                    const Text(
+                      "Product Details",
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontFamily: 'Roboto',
+                      ),
+                    ),
+                    // Icône panier avec badge
+                    Stack(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            // Action du panier
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 10,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: const Icon(Icons.shopping_cart,
+                                color: Colors.white),
+                          ),
+                        ),
+                        const Positioned(
+                          top: 4,
+                          right: 4,
+                          child: CircleAvatar(
+                            radius: 8,
+                            backgroundColor: Colors.red,
+                            child: Text(
+                              '1',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 12),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 10),
+              // Image principale
+              Center(
+                child: Container(
+                  height: 270,
+                  width: 350,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Image.asset(
+                    _selectedImage,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              // Galerie d'images
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Bouton retour
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context); // Retour à la page précédente
-                    },
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            blurRadius: 10,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: const Icon(Icons.arrow_back, color: Colors.black),
-                    ),
-                  ),
-                  const Text(
-                    "Product Details",
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      fontFamily: 'Roboto',
-                    ),
-                  ),
-                  // Icône panier avec badge
-                  Stack(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          // Action du panier
-                        },
-                        child: Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                            color: Colors.green,
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
-                                blurRadius: 10,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          child: const Icon(Icons.shopping_cart,
-                              color: Colors.white),
-                        ),
-                      ),
-                      const Positioned(
-                        top: 4,
-                        right: 4,
-                        child: CircleAvatar(
-                          radius: 8,
-                          backgroundColor: Colors.red,
-                          child: Text(
-                            '1',
-                            style: TextStyle(color: Colors.white, fontSize: 12),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  _buildGalleryImage(
+                      'asset/img/bananas_opt-removebg-preview.png', true),
+                  _buildGalleryImage('asset/img/BANANA2.png', true),
+                  _buildGalleryImage('asset/img/Banana.png', true),
+                  _buildGalleryImage(
+                      'asset/img/BABANA-removebg-preview.png', true),
                 ],
               ),
-            ),
-            const SizedBox(height: 10),
-            // Image principale
-            Center(
-              child: Container(
-                height: 270,
-                width: 350,
-                decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Image.asset(
-                  _selectedImage,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            // Galerie d'images
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildGalleryImage(
-                    'asset/img/bananas_opt-removebg-preview.png', true),
-                _buildGalleryImage('asset/img/BANANA2.png', true),
-                _buildGalleryImage('asset/img/Banana.png', true),
-                _buildGalleryImage(
-                    'asset/img/BABANA-removebg-preview.png', true),
-              ],
-            ),
-            const SizedBox(height: 30),
-            // Infos sur le produit
-            Expanded(
-              child: Padding(
+              const SizedBox(height: 20),
+              // Infos sur le produit
+              Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -193,13 +196,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 20),
                     const Text(
-                      'Bananas are a popular tropical fruit rich in vitamins vitami, particularly B6 and vitamin C. Known for potassium content, which vitamins vitamins promotes heart health and muscle function.',
+                      'Bananas are a popular tropical fruit rich  vitamins vitami  tropical fruit rich  vitam C. vitami, potassium Vitamin B6 Known for potassium content,  health and muscle function.',
                       style: TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.bold,
-                        fontSize: 17,
+                        fontSize: 18,
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -210,16 +213,16 @@ class _ProductDetailsState extends State<ProductDetails> {
                           "\$${(_pricePerItem * _quantity).toStringAsFixed(2)}",
                           style: const TextStyle(
                             color: Colors.green,
-                            fontSize: 18,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+                        const SizedBox(width: 150),
                         // Contrôles de quantité
-                        const SizedBox(width: 200),
                         Row(
                           children: [
                             Container(
-                              height: 50,
+                              height: 40,
                               width: 115,
                               decoration: BoxDecoration(
                                 color: const Color(0xFFFFFFFF),
@@ -269,7 +272,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 10),
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -278,33 +281,36 @@ class _ProductDetailsState extends State<ProductDetails> {
                               builder: (context) => const MyCart()),
                         );
                       },
-                      child: Container(
-                          height: 50,
-                          width: 350,
-                          decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.circular(30),
-                            shape: BoxShape.rectangle,
-                            border: Border.all(
-                              color: const Color(0xA99E9E9E),
-                              width: 0.5,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                            height: 50,
+                            width: 350,
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(30),
+                              shape: BoxShape.rectangle,
+                              border: Border.all(
+                                color: const Color(0xA99E9E9E),
+                                width: 0.5,
+                              ),
                             ),
-                          ),
-                          child: const Center(
-                              child: Text(
-                            'Add items to Cart',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ))),
+                            child: const Center(
+                                child: Text(
+                              'Add items to Cart',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ))),
+                      ),
                     )
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
