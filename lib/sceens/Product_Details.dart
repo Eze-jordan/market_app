@@ -24,13 +24,13 @@ class _ProductDetailsState extends State<ProductDetails> {
       backgroundColor: const Color(0xFFF3F5F7), // Couleur de fond
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 20),
+          padding: const EdgeInsets.only(top: 10),
           child: Column(
             children: [
               // Boutons retour et panier
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -71,7 +71,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            // Action du panier
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const MyCart()),
+                            );
                           },
                           child: Container(
                             height: 40,
@@ -96,7 +100,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                           right: 4,
                           child: CircleAvatar(
                             radius: 8,
-                            backgroundColor: Colors.red,
+                            backgroundColor: Colors.yellow,
                             child: Text(
                               '1',
                               style:
@@ -138,7 +142,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                       'asset/img/BABANA-removebg-preview.png', true),
                 ],
               ),
-              const SizedBox(height: 20),
+              const Icon(
+                Icons.keyboard_control_sharp,
+                color: Colors.grey,
+                size: 30,
+              ),
+              const SizedBox(height: 10),
               // Infos sur le produit
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -196,7 +205,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 5),
                     const Text(
                       'Bananas are a popular tropical fruit rich  vitamins vitami  tropical fruit rich  vitam C. vitami, potassium Vitamin B6 Known for potassium content,  health and muscle function.',
                       style: TextStyle(
@@ -274,13 +283,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ),
                     const SizedBox(height: 10),
                     GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MyCart()),
-                        );
-                      },
+                      onTap: () {},
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
